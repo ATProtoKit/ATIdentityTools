@@ -56,7 +56,8 @@ do {
         let didDocument = try await didResolver.resolve(did: did)
         print("DID Document: \(didDocument)")
 
-        // Additional retries of the same DID will be cached for a period of time. You can disable this by force refreshing.
+        // Additional retries of the same DID will be cached for a period of time.
+        // You can disable this by force refreshing.
         let secondDIDDocument = try await didResolver.resolve(did: did, willForceRefresh: true)
         print("Second DID Document: \(secondDIDDocument)")
 
