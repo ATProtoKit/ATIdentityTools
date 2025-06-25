@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ATProtoKit/ATCommonTools.git",
       "state" : {
-        "revision" : "30a6c2a7fa19ee9f142bb222b10b2d72789b2f8e",
-        "version" : "0.0.12"
+        "revision" : "ca5eee7f09202699707cb249d411bbb2c7597986",
+        "version" : "0.0.13"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ATProtoKit/ATCryptography.git",
       "state" : {
-        "revision" : "7211159bda57580cd0b5107b26705e8004c6aea8",
-        "version" : "0.1.9"
+        "revision" : "51137acf84f6da1c3ff41b208733e7e3d4208a0d",
+        "version" : "0.1.10"
       }
     },
     {
@@ -57,10 +57,10 @@
     {
       "identity" : "swift-cbor",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nnabeyang/swift-cbor",
+      "location" : "https://github.com/MasterJ93/swift-cbor.git",
       "state" : {
-        "revision" : "49838182e0189dc7eb27018d3d707a939b9c20d6",
-        "version" : "0.0.4"
+        "revision" : "640a30c0651d734f21b800b221c60feee6382e69",
+        "version" : "0.0.5"
       }
     },
     {
