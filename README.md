@@ -125,3 +125,6 @@ If you have any questions, you can ask me on Bluesky ([@cjrriley.ca](https://bsk
 
 ## License
 This Swift package is using the Apache 2.0 License. Please view [LICENSE.md](https://github.com/ATProtoKit/ATIdentityTools/blob/main/LICENSE.md) for more details.
+
+The following third-party Swift packages have been used to help run ATIdentityTools:
+- [swift-async-dns-resolver](https://github.com/apple/swift-async-dns-resolver) from [Apple](https://github.com/apple).
