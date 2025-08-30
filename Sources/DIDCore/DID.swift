@@ -48,4 +48,53 @@ public struct DID: DIDProtocol {
         self.method = method
         self.identifier = String(components[2])
     }
+
+    /// Validates a decentralized identifier (DID) to see if it's validated by AT Protocol standards.
+    ///
+    /// - Parameter atProtoDID: The DID to validate.
+    /// - `true` if it's valid, or `false` if not.
+    public static func validate(atProtoDID: String) -> Bool {
+        if atProtoDID.starts(with: "did:plc") {
+            return DIDPLCIdentifier.isATProtoDID(atProtoDID)
+        } else if atProtoDID.starts(with: "did:web") {
+            return DIDWebIdentifier.isDIDWeb(atProtoDID)
+        } else {
+            return false
+        }
+    }
+
+    /// Checks whether the given string value is a valid AT Protocol audience identifier.
+    ///
+    /// An audience identifier with respect to an AT Protocol-specific decentralized identifier must have
+    /// the form:
+    /// - A valid AT Protocol-specific DID (`did:plc` or `did:web`),
+    /// - Followed by a single `#` character,
+    /// - Followed by a RFC 3986-validated URI fragment.
+    ///
+    /// Examples of valid ATProtoAudience:
+    /// - `did:plc:abc123#session`
+    /// - `did:web:example.com#key1`
+    ///
+    /// Examples of invalid values:
+    /// - `did:web:example.com` (Fragment is missing.)
+    /// - `not-a-did#fragment` (Not an AT Protocol-specific DID.)
+    /// - `did:plc:abc123#frag#extra` (More than one `#` was detected.)
+    ///
+    /// - Parameter value: The string value to check.
+    /// - Returns: `true` if the string is valid, or `false` if not.
+    public func isATProtoAudience(value: String) -> Bool {
+        guard let firstHashIndex = value.firstIndex(of: "#") else {
+            return false
+        }
+
+        let nextSearchStart = value.index(after: firstHashIndex)
+        if value[nextSearchStart...].contains("#") {
+            return false
+        }
+
+        let hashOffset = value.distance(from: value.startIndex, to: firstHashIndex) + 1
+        let beforeHash = String(value[..<firstHashIndex])
+
+        return URIFragmentValidator.isValidFragment(value, startingAt: hashOffset) && DID.validate(atProtoDID: beforeHash)
+    }
 }
