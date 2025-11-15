@@ -8,7 +8,7 @@
 import Foundation
 
 /// A protocol related to constructing and validating decentralized identifiers (DIDs).
-public protocol DIDProtocol: Codable, Equatable, CustomStringConvertible {
+public protocol DIDProtocol: Codable, Sendable, Equatable, CustomStringConvertible {
 
     /// The method name component of the decentralized identifier (DID).
     ///
