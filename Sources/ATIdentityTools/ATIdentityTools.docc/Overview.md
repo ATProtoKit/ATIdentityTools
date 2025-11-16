@@ -69,3 +69,5 @@ ATIdentityTools is fully open source under the [Apache 2.0 license](https://gith
 - ``ATIdentityToolsError``
 - ``ATProtoDocumentError``
 - ``DIDResolverError``
+- ``HandleResolverError``
+- ``TimeoutError``
