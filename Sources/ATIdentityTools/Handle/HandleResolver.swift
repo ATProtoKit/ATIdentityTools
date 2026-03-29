@@ -77,7 +77,7 @@ public actor HandleResolver: Sendable {
             let chunkedResults = try await Task.detached(priority: .utility) { () throws -> [String] in
                 var options = CAresDNSResolver.Options.default
                 options.timeoutMillis = Int32(self.timeout * 1_000)
-                let resolver = try AsyncDNSResolver()
+                let resolver = try AsyncDNSResolver(options: options)
                 let txtResults = try await resolver.queryTXT(name: "\(Self.subdomain).\(handle)")
                 return txtResults.map { $0.txt }
             }.value
