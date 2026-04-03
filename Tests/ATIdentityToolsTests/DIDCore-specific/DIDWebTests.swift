@@ -8,25 +8,28 @@
 import Testing
 @testable import DIDCore
 
-@Suite("did:web Tests") struct DIDWebTests {
+@Suite
+struct `did:web` {
 
-    @Suite("Identify did:web DIDs.") struct DIDWebIdentity {
+    @Suite
+    struct `Identify did:web DIDs` {
 
-        @Test("Identify all valid did:web DIDs.", arguments: DIDs.valid)
-        func identifyValidDIDWebs(did: String, entry: String) {
+        @Test(arguments: DIDs.valid)
+        func `Identify all valid did:web DIDs`(did: String, entry: String) {
             let isValid = DIDWebIdentifier.isDIDWeb(did)
             #expect(isValid == true, "DID \(did) should be valid.")
         }
 
-        @Test("Identify all invalid did:web DIDs.", arguments: zip(DIDs.invalid.keys, DIDs.invalid.values))
-        func identifyInvalidDIDWebs(invalidDID: String, didValidationError: String) {
+        @Test(arguments: zip(DIDs.invalid.keys, DIDs.invalid.values))
+        func `Identify all invalid did:web DIDs`(invalidDID: String, didValidationError: String) {
             let isValid = DIDWebIdentifier.isDIDWeb(invalidDID)
             #expect(isValid == false, "DID \(invalidDID) shouldn't be valid.")
         }
     }
 
-    @Suite("Validate did:web DIDs.") struct ValidateDIDWeb {
-        
+    @Suite
+    struct `Validate did:web DIDs` {
+
     }
 
     public enum DIDs {

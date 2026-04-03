@@ -8,36 +8,39 @@
 import Testing
 @testable import DIDCore
 
-@Suite("did:plc Tests") struct DIDPlcTests {
+@Suite
+struct `did:plc` {
 
-    @Suite("Identify did:plc DIDs.") struct DIDPlcIdentity {
+    @Suite
+    struct `Identify did:plc DID` {
 
-        @Test("Identify all valid did:plc DIDs.", arguments: DIDs.valid)
-        func identifyValidDIDPlcs(did: String) throws {
+        @Test(arguments: DIDs.valid)
+        func `Identify all valid did:plc DIDs`(did: String) throws {
             #expect(throws: Never.self, "DID \(did) should be valid.", performing: {
                 try DIDPLCIdentifier(did)
             })
         }
 
-        @Test("Identify all invalid did:plc DIDs.", arguments: zip(DIDs.invalid.keys, DIDs.invalid.values))
-        func identifyInvalidDIDPlcs(invalidDID: String, didValidationError: String) throws {
+        @Test(arguments: zip(DIDs.invalid.keys, DIDs.invalid.values))
+        func `Identify all invalid did:plc DIDs`(invalidDID: String, didValidationError: String) throws {
             #expect(throws: DIDValidatorError.self, "did:plc \(invalidDID) should not be valid: \(didValidationError)", performing: {
                 try DIDPLCIdentifier(invalidDID)
             })
         }
     }
 
-    @Suite("Validate did:plc DIDs.") struct ValidateDIDPlc {
+    @Suite
+    struct `Validate did:plc DIDs` {
 
-        @Test("Validates the valid did:plc DIDs.", arguments: DIDs.valid)
-        func validateValidDIDPlcs(did: String) throws {
+        @Test(arguments: DIDs.valid)
+        func `Validates the valid did:plc DIDs`(did: String) throws {
             #expect(throws: Never.self, "DID \(did) should be valid.", performing: {
                 try DIDPLCIdentifier.validate(did: did)
             })
         }
 
-        @Test("Invalidate invalid did:plc DIDs.", arguments: zip(DIDs.invalid.keys, DIDs.invalid.values))
-        func invalidateInvalidDIDPlcs(invalidDID: String, didValidationError: String) throws {
+        @Test(arguments: zip(DIDs.invalid.keys, DIDs.invalid.values))
+        func `Invalidate invalid did:plc DIDs`(invalidDID: String, didValidationError: String) throws {
             #expect(throws: DIDValidatorError.self, "did:plc \(invalidDID) should not be valid: \(didValidationError)", performing: {
                 try DIDPLCIdentifier.validate(did: invalidDID)
             })
